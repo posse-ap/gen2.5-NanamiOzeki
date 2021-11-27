@@ -1,0 +1,18 @@
+/* .content{
+    width: 50%;
+    margin: 0 auto;
+} */
+.selections{
+ list-style: none;
+ border: solid 1px black;
+ margin-bottom: 5px;
+}
+/* .element.style{
+    max-width: 500px;
+} */
+
+.wrapper{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
