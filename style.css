@@ -4,8 +4,12 @@
 } */
 .selections{
  list-style: none;
- border: solid 1px black;
- margin-bottom: 5px;
+ border: solid 1px #ebebeb;
+ padding: 13px;
+ margin: 10px 0;
+ font-weight: 600;
+ cursor: pointer;
+ box-shadow: 0 3px 2px -2px rgb(0 0 0 / 13%);
 }
 /* .element.style{
     max-width: 500px;
@@ -16,3 +20,13 @@
     margin: 0 auto;
 }
 
+.question:after {
+    display: block;
+    margin-top: 8px;
+    width: 90pt;
+    height: 2px;
+    background-color: #00ab36;
+    content: '';
+}
+
+    
