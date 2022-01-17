@@ -18,11 +18,11 @@
     width: 100%;
 }
 
-.aaa{
+.selections{
     padding-left: 0;
 }
     
-.selections{
+.selection{
  list-style: none;
  border: solid 1px #ebebeb;
  padding: 13px;
