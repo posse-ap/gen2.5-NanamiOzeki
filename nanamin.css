@@ -1,0 +1,41 @@
+header{
+    display: flex;
+    width: 100%;
+    height: 64px;
+    background-color:white;
+}
+.title{
+    margin-right: auto;
+    display: flex;
+   
+}
+.posse_logo{
+    width: 100px;
+    height: 20px;
+    margin: auto;
+    margin-left: 20px;
+}
+
+.week{
+    font-size: 10px;
+    margin: auto;
+    margin-left: 20px;
+    color: rgb(144, 189, 202);
+}
+.post{
+    background: linear-gradient(to right, rgb(36, 124, 224), skyblue);
+    border-radius: 20px;
+    width: 200px;
+    /* height: 40px; */
+    text-align: center;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    box-shadow: 0px 4px 10px 4px skyblue;
+    padding: 20px,0;
+}
+.text{
+    color: white;
+    margin: 0;
+    padding: 10px;
+}
