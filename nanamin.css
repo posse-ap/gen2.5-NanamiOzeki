@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 header{
     display: flex;
     width: 100%;
@@ -39,3 +43,43 @@ header{
     margin: 0;
     padding: 10px;
 }
+.section{
+    padding: 20px 100px;
+}
+.studyHours{
+    display: flex;
+}
+.today,.month,.total{
+    height: 140px;
+    width: 180px;
+    border: #000 1px solid;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+h2{
+    font-size: 16px;
+    color: rgb(76, 129, 207);
+    text-align: center;
+}
+.numbers{
+    font-size: 36px;
+    text-align: center;
+    color: #000;
+    font-weight: 800;
+    line-height: 60px;
+}
+.hour{
+    font-size: 20px;
+    text-align: center;
+    color: rgba(76, 129, 207,0.5);
+}
+.graph{
+    height: 360px;
+    width: 580px;
+    border: #000 1px solid;
+    margin: 10px;
+    border-radius: 10px;
+}
+

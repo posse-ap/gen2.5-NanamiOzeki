@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="nanamin.css">
     <link rel="stylesheet" href="nanamin.js">
     <title>nanaminwebapp</title>
 </head>
+
 <body>
+<main>
     <header>
         <h1 class="title">
-            <img class="posse_logo"src="img/posse_logo.jpeg" alt="">
+            <img class="posse_logo" src="img/posse_logo.jpeg" alt="posselogo">
             <p class="week">4thweek</p>
         </h1>
-        <div class="post"><p class="text">記録・投稿</p></div>
+        <div class="post">
+            <p class="text">記録・投稿</p>
+        </div>
     </header>
-    <div class="today"></div>
-    <div class="month"></div>
-    <div class="total"></div>
-    <div class="graph"></div>
-    <div class="lang"></div>
-    <div class="contents"></div>
+    <article class="section">
+        <div class="container">
+            <div class="studyHours">
+                <div class="today">
+                    <h2>Today</h2>
+                    <p class="numbers">3</p>
+                    <p class="hour">hour</p>
+                </div>
+                <div class="month">
+                    <h2>Month</h2>
+                    <p class="numbers">120</p>
+                    <p class="hour">hour</p>
+                </div>
+                <div class="total">
+                    <h2>Total</h2>
+                    <p class="numbers">1348</p>
+                    <p class="hour">hour</p>
+                </div>
+            </div>
+            <div class="graph">
+                
+            </div>
+            <div class="lang">
+                <h5>学習言語</h5>
+            </div>
+            <div class="contents">
+                <h6>学習コンテンツ</h6>
+            </div>
+        </div>
+    </article>
+</main>
+
 </body>
+
 </html>
