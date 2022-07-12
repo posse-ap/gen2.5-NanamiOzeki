@@ -1,0 +1,15 @@
+header{
+  display: flex;
+}
+
+.header__nav__list{
+  display: flex;
+}
+
+.header__sns{
+  display: flex;
+}
+
+ul{
+  list-style-type: none;
+}
