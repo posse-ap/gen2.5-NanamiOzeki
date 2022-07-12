@@ -27,7 +27,13 @@ body {
 /**
  * Render the `main` element consistently in IE.
  */
+.globalnav a{
+background-color: saddlebrown;
+color: snow;
+border-radius: 75px;
 
+
+}
 main {
   display: block;
 }
