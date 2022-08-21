@@ -1,5 +1,16 @@
 <?php
-phpinfo();
+// phpinfo();
+require(dirname(__FILE__) . "/dbconnect.php");
+$stmt = $pdo->prepare("SELECT * FROM big_questions");
+// (5) SQL実行
+$res = $stmt->execute();
+
+// (6) 該当するデータを取得
+$data = $stmt->fetch();
+var_dump($data);
+
+// (7) データベースの接続解除
+$pdo = null;
 ?>
 <!DOCTYPE html>
 <html lang="ja">

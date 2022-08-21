@@ -30,6 +30,7 @@ services:
 
   db:
     image: mysql:latest
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 3306:3306
     volumes:
@@ -38,7 +39,7 @@ services:
       - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:
       MYSQL_DATABASE: quizy
-      MYSQL_USER: yukiho
+      MYSQL_USER: nanami
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: secret
     platform: linux/x86_64 # M1チップ対応のため追記
