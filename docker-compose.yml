@@ -5,7 +5,7 @@ services:
 # コンテナ
   nginx:
   # もとにするイメージが必要
-    image: nginx:latest
+    image: nginx:1.21
   # ポート番号 80ならローカル星とで開ける
     ports:
       - 8080:80
@@ -29,7 +29,8 @@ services:
       - db
 
   db:
-    image: mysql:latest
+    # image: mysql:latest
+    build: ./mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 3306:3306

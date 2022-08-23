@@ -1,13 +1,13 @@
 <?php
 // phpinfo();
 require(dirname(__FILE__) . "/dbconnect.php");
-$stmt = $pdo->prepare("SELECT * FROM big_questions");
+$stmt = $db->prepare("SELECT * FROM big_questions WHERE id = 2 " );
 // (5) SQL実行
 $res = $stmt->execute();
 
 // (6) 該当するデータを取得
 $data = $stmt->fetch();
-var_dump($data);
+print_r($data["name"]);
 
 // (7) データベースの接続解除
 $pdo = null;
