@@ -1,9 +1,13 @@
 <?php
 // phpinfo();
 require(dirname(__FILE__) . "/dbconnect.php");
-$stmt = $db->prepare("SELECT * FROM big_questions WHERE id = 2 " );
+$id = $_GET['id'];
+$stmt = $db->prepare("SELECT * FROM big_questions WHERE id=$id");
+
 // (5) SQL実行
-$res = $stmt->execute();
+$stmt->execute();
+// 一個め（はてなになっている位置を指定）,何を定義しているか
+$stmt->bindValue(1,$id);
 
 // (6) 該当するデータを取得
 $data = $stmt->fetch();
