@@ -37,8 +37,27 @@ function questions($db, $id)
     print_r($questions_data);
     print_r('</pre>');
 }
-
 questions($db, $id);
+print_r($questions_data);
+
+function choices($db, $id)
+{
+    $stmt = $db->prepare("SELECT * FROM choices WHERE big_question_id=?");
+
+    // 一個め（はてなになっている位置を指定）,何を定義しているか
+    $stmt->bindValue(1, $id);
+    // (5) SQL実行
+    $stmt->execute();
+
+    // (6) 該当するデータを取得
+    global $choices_data;
+    $choices_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    print_r('<pre>');
+    print_r($choices_data);
+    print_r('</pre>');
+}
+choices($db, $id);
+print_r($choices_data);
 
 // (7) データベースの接続解除
 $pdo = null;
@@ -64,11 +83,11 @@ $pdo = null;
             <div class="img">
                 <img src="<?php echo "./imgs/" . $questions_data[$i]['image'] ?>" alt="">
             </div>
+            <?php foreach ($choices_data as $choice_data) { ?>
             <ul class="selections">
-                <li class="selection" id="selection"></li>
-                <li class="selection" id="selection"></li>
-                <li class="selection" id="selection"></li>
-            </ul>
+                <li class="selection" ><?php echo $choice_data['name']; ?></li>
+            </ul> 
+            <?php } ?>
         </div>
         <div class="correctBox" id="correctBox">
             <b class="correctTitle" id="correctTitle">正解！</b>
