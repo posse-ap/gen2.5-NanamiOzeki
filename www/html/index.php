@@ -4,7 +4,7 @@ require(dirname(__FILE__) . "/dbconnect.php");
 $id = filter_input(INPUT_GET, 'id');
 function big_questions($db, $id)
 {
-    $stmt = $db->prepare("SELECT * FROM big_questions WHERE id=?");
+    $stmt = $db->prepare("SELECT * FROM choices WHERE question_id=?");
 
     // 一個め（はてなになっている位置を指定）,何を定義しているか
     $stmt->bindValue(1, $id);
@@ -14,12 +14,10 @@ function big_questions($db, $id)
     // (6) 該当するデータを取得
     global $data;
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    print_r($data["name"]);
-
-    $stmt = $db->prepare("SELECT * FROM big_questions WHERE id=?");
+    // print_r($data["name"]);
 }
-big_questions($db, $id);
-print_r($data);
+// big_questions($db, $id);
+// print_r($data);
 
 function questions($db, $id)
 {
@@ -33,16 +31,16 @@ function questions($db, $id)
     // (6) 該当するデータを取得
     global $questions_data;
     $questions_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r('<pre>');
-    print_r($questions_data);
-    print_r('</pre>');
+    // print_r('<pre>');
+    // print_r($questions_data);
+    // print_r('</pre>');
 }
 questions($db, $id);
-print_r($questions_data);
+// print_r($questions_data);
 
 function choices($db, $id)
 {
-    $stmt = $db->prepare("SELECT * FROM choices WHERE big_question_id=?");
+    $stmt = $db->prepare("SELECT question_id, name FROM choices WHERE big_question_id=?");
 
     // 一個め（はてなになっている位置を指定）,何を定義しているか
     $stmt->bindValue(1, $id);
@@ -51,13 +49,13 @@ function choices($db, $id)
 
     // (6) 該当するデータを取得
     global $choices_data;
-    $choices_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $choices_data = $stmt->fetchAll(PDO::FETCH_COLUMN | PDO::FETCH_GROUP);
     print_r('<pre>');
     print_r($choices_data);
     print_r('</pre>');
 }
 choices($db, $id);
-print_r($choices_data);
+// print_r($choices_data);
 
 // (7) データベースの接続解除
 $pdo = null;
@@ -76,26 +74,46 @@ $pdo = null;
 
 <body>
     <h1 class="title">ガチで東京の人しか解けない！#東京の難読地名クイズ</h1>
-    <?php for ($i=0; $i < count($questions_data); $i++) { ?>
-    <div class="wrapper" id="wrapper">
-        <div class="content">
-            <h2 class="question">.この地名はなんて読む？</h2>
-            <div class="img">
-                <img src="<?php echo "./imgs/" . $questions_data[$i]['image'] ?>" alt="">
+    <?php for ($i = $questions_data[0]['id']; $i < count($questions_data) + $questions_data[0]['id']; $i++) { ?>
+        <?php $stmt = $db->prepare("SELECT * FROM choices WHERE question_id=?");
+
+        // 一個め（はてなになっている位置を指定）,何を定義しているか
+        $stmt->bindValue(1, $i);
+        // (5) SQL実行
+        $stmt->execute();
+        // print_r('<pre>');
+        // print_r($questions_data);
+        // print_r('</pre>');
+        // (6) 該当するデータを取得
+        global $data;
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <div class="wrapper" id="wrapper">
+            <div class="content">
+                <h2 class="question">.この地名はなんて読む？</h2>
+                <div class="img">
+                    <img src="<?php echo "./imgs/" . $questions_data[$i-$questions_data[0]['id']]['image'] ?>" alt="">
+                </div>
+                <ul class="selections">
+                    <li class="selection"><?php echo $choices_data[$i][0]; ?></li>
+                </ul>
+                <ul class="selections">
+                    <li class="selection"><?php echo $choices_data[$i][1]; ?></li>
+                </ul>
+                <ul class="selections">
+                    <li class="selection"><?php echo $choices_data[$i][2]; ?></li>
+                </ul>
             </div>
-            <?php foreach ($choices_data as $choice_data) { ?>
-            <ul class="selections">
-                <li class="selection" ><?php echo $choice_data['name']; ?></li>
-            </ul> 
-            <?php } ?>
+            <div class="correctBox" id="correctBox">
+                <b class="correctTitle" id="correctTitle">正解！</b>
+                <b class="uncorrectTitle" id="uncorrectTitle">不正解！</b>
+                <p>正解は「」です！</p>
+            </div>
         </div>
-        <div class="correctBox" id="correctBox">
-            <b class="correctTitle" id="correctTitle">正解！</b>
-            <b class="uncorrectTitle" id="uncorrectTitle">不正解！</b>
-            <p>正解は「」です！</p>
-        </div>
-    </div>
     <?php } ?>
 </body>
 
 </html>
+
+<!-- 一問目の時にquestion_id=1、二問目の時にquestion_id=2をwhereで指定すればいい
+でもやり方がわからん -->
