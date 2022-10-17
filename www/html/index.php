@@ -114,6 +114,3 @@ $pdo = null;
 </body>
 
 </html>
-
-<!-- 一問目の時にquestion_id=1、二問目の時にquestion_id=2をwhereで指定すればいい
-でもやり方がわからん -->
