@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://unpkg.com/chart.js-plugin-labels-dv@3.0.5/dist/chartjs-plugin-labels.min.js"></script>
+    <script src="https://kit.fontawesome.com/7957e9169b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="nanamin.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://kit.fontawesome.com/7957e9169b.js" crossorigin="anonymous"></script>
+    <title>nanaminwebapp</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1 class="title">
+                <img class="posse_logo" src="img/posse_logo.jpeg" alt="posselogo" />
+                <p class="week">4thweek</p>
+            </h1>
+            <div class="post" id="post">
+                <p href="#" class="text">記録・投稿</p>
+            </div>
+        </header>
+        <article class="section">
+            <div class="container">
+                <div class="leftcontainer">
+                    <div class="studyHours">
+                        <div class="today">
+                            <h2>Today</h2>
+                            <p class="numbers">3</p>
+                            <p class="hour">hour</p>
+                        </div>
+                        <div class="month">
+                            <h2>Month</h2>
+                            <p class="numbers">120</p>
+                            <p class="hour">hour</p>
+                        </div>
+                        <div class="total">
+                            <h2>Total</h2>
+                            <p class="numbers">1348</p>
+                            <p class="hour">hour</p>
+                        </div>
+                    </div>
+                    <div class="graph">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="rightcontainer">
+                    <div class="langSection">
+                        <h3>学習言語</h3>
+                        <canvas id="langDonut"></canvas>
+                        <div class="langline1">
+                            <div class="lang legend1">JavaScript</div>
+                            <div class="lang legend2">CSS</div>
+                            <div class="lang legend3">PHP</div>
+                        </div>
+                        <div class="langlline2">
+                            <div class="lang legend4">HTML</div>
+                            <div class="lang legend5">Laravel</div>
+                            <div class="lang legend6">SQL</div>
+                        </div>
+                        <div class="langline3">
+                            <div class="lang legend7">SHELL</div>
+                        </div>
+                        <div class="langline4">
+                            <div class="lang legend8">情報システム基礎知識（その他）</div>
+                        </div>
+                    </div>
+                    <div class="contentsSection">
+                        <h3>学習コンテンツ</h3>
+                        <canvas id="contentsDonut"></canvas>
+                        <div class="contents legend1">ドットインストール</div>
+                        <div class="contents legend2">N予備校</div>
+                        <div class="contents legend3">POSSE課題</div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="currentMonth">
+                <p class="arrowStart">＜</p>
+                <p class="date">2020年 10月</p>
+                <p class="arrowEnd">＞</p>
+            </div>
+        </footer>
+        <div class="postSP" id="postSH">
+            <p href="#" class="text">記録・投稿</p>
+        </div>
+    </main>
+
+    <!-- オーバーレイ -->
+    <div class="overlay"></div>
+
+    <!-- モーダルウィンドウ -->
+    <div class="modalWrapper">
+        <div class="modal">
+            <div class="close">&times</div>
+            <div class="modalMain" id='modalMain'>
+                <div class="modalLeft">
+                    <div class="modalElement">
+                        <h4>学習日</h4>
+                        <input class="modalSquareTop" type="text" id="sample">
+                    </div>
+                    <div class="modalElementBottom">
+                        <h4>学習コンテンツ（複数選択可）</h4>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">N予備校</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">ドットインストール</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">POSSE課題</span>
+                        </div>
+                    </div>
+                    <div class="modalElementBottom">
+                        <h4>学習言語（複数選択可）</h4>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">HTML</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">CSS</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">JavaScript</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">PHP</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">Laravel</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">SQL</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">SHELL</span>
+                        </div>
+                        <div class="elementsWrapper">
+                            <span class="elementsText">情報システム基礎知識（その他）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modalRight">
+                    <div class="modalElement">
+                        <h4>学習時間</h4>
+                        <input class="modalSquareTop" type="text" id="">
+                    </div>
+                    <div class="modalElementBottom">
+                        <h4>Twitter用コメント</h4>
+                        <textarea class="modalSquareTwitter" type="text" id="js-area"></textarea>
+                    </div>
+                    <div class="modalElement" id="twitterShare">
+                        <h4 class="modalShareText">Twitterにシェアする</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modalPost" id="modalPost">
+                <p href="#" class="text">記録・投稿</p>
+            </div>
+            <div class="loader" id="loader"></div>
+            <div class="complete" id="complete">
+                <i class="fa-regular fa-circle-check fa-5x"></i>
+                <div>記録・投稿</div>
+                <div>完了しました</div>
+            </div>
+        </div>
+    </div>
+    <!-- スクロールで高さを出すためのsectionタグ
+    <section></section> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script>
+      // Define a plugin to provide data labels
+    </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>   -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/chart.js-plugin-labels-dv@3.0.5/dist/chartjs-plugin-labels.min.js"></script> -->
+    <script src="nanamin.js"></script>
+</body>
+
+</html>
